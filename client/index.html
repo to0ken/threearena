@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IsoArena — 2 Player</title>
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, sans-serif;
+    }
+    
+    /* Canvas на весь экран */
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Ниже UI */
+    }
+    
+    /* UI поверх canvas */
+    #ui {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      z-index: 10; /* Выше canvas */
+      pointer-events: none; /* Чтобы не мешал кликам */
+    }
+    
+    #ui strong {
+      color: #64ffda;
+    }
+    
+    /* Форма подключения */
+    #room-form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(22, 33, 62, 0.95);
+      padding: 30px 40px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 20; /* Самый верхний */
+      min-width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    
+    #room-form h3 {
+      color: #64ffda;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    
+    #room-form input {
+      padding: 10px 14px;
+      border: 2px solid #3a4a7a;
+      border-radius: 6px;
+      background: #0f1a3a;
+      color: white;
+      font-size: 15px;
+    }
+    
+    #room-form input:focus {
+      outline: none;
+      border-color: #64ffda;
+    }
+    
+    #room-form button {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #64ffda, #00aa88);
+      color: #0a1929;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    
+    #room-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(100, 255, 218, 0.4);
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- UI панель -->
+  <div id="ui">
+    <div>🏠 Комната: <strong id="room-display">-</strong></div>
+    <div>👤 Игрок: <strong id="player-display">-</strong></div>
+    <div>👥 Игроков: <strong id="players-count">0</strong>/2</div>
+  </div>
+  
+  <!-- Форма подключения -->
+  <form id="room-form">
+    <h3>🎮 IsoArena</h3>
+    <input type="text" id="room-input" placeholder="Название комнаты" required autocomplete="off" />
+    <input type="number" id="player-input" placeholder="Ваш номер (1 или 2)" min="1" max="2" required />
+    <button type="submit">Подключиться</button>
+  </form>
+
+  <!-- Canvas добавится сюда автоматически -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
